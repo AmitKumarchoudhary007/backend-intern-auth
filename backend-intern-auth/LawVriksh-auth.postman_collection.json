@@ -1,0 +1,38 @@
+{
+    "info": {
+      "name": "LawVriksh Auth",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "variable": [
+      {"key":"base_url","value":"http://localhost:8000"},
+      {"key":"token","value":""}
+    ],
+    "item": [
+      {
+        "name": "Register",
+        "request": {
+          "method": "POST",
+          "header": [{"key":"Content-Type","value":"application/json"}],
+          "body": {"mode":"raw","raw":"{ \"email\":\"test@example.com\", \"name\":\"Tester\", \"password\":\"pass123\" }"},
+          "url": {"raw":"{{base_url}}/auth/register","host":["{{base_url}}"], "path":["auth","register"]}
+        }
+      },
+      {
+        "name": "Login",
+        "request": {
+          "method": "POST",
+          "header": [{"key":"Content-Type","value":"application/json"}],
+          "body": {"mode":"raw","raw":"{ \"email\":\"test@example.com\", \"password\":\"pass123\" }"},
+          "url": {"raw":"{{base_url}}/auth/login","host":["{{base_url}}"], "path":["auth","login"]}
+        }
+      },
+      {
+        "name": "Get posts (protected)",
+        "request": {
+          "method": "GET",
+          "header": [{"key":"Authorization","value":"Bearer {{token}}"}],
+          "url": {"raw":"{{base_url}}/api/posts","host":["{{base_url}}"], "path":["api","posts"]}
+        }
+      }
+    ]
+  }
